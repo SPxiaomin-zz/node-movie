@@ -101,3 +101,45 @@ localhost:3000/admin/list
 ```
 
 ## 创建四个pug视图及入口文件中处理
+
+## 伪造模板数据跑通前后端交互流程
+
+### 目录层调整
+
+目录层调整——多个文件代码相似，如果一个文件一个文件修改，显然是极不可取的，所以利用 pug 的 include & inheritance。
+
+```
+.
+└── views
+    ├── includes
+    ├── layout.pug
+    └── pages
+        ├── admin.pug
+        ├── detail.pug
+        ├── index.pug
+        └── list.pug
+```
+
+```pug
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title #{title}
+        include ./includes/head
+    body
+        include ./includes/header
+        block content
+        h1 #{title}
+```
+
+### 编写样式
+
+- 安装 Bootstrap（注意后面的`@3`，如果不加的话会提示不存在）
+
+    ```
+    bower install bootstrap@3
+    ```
+- 编写 header.pug
+
+- 编写 head.pug
