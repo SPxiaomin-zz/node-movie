@@ -143,3 +143,15 @@ html
 - 编写 header.pug
 
 - 编写 head.pug
+
+- 编写 index.pug
+
+- 编写 detail.pug
+
+- 编写 admin.pug
+
+- 编写 list.pug
+
+### 伪造数据
+
+## mongodb模式模型设计及编码
