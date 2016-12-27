@@ -18,8 +18,9 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extend: false }));
-app.use(express.static(path.join(__dirname, 'bower_components')));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.locals.moment = require('moment');
 
 // index page
 app.get('/', function(req, res) {
@@ -91,7 +92,7 @@ app.post('/admin/movie/new', function(req, res) {
     var movieObj = req.body.movie;
     var _movie;
 
-    if (id !== 'undefined') {
+    if (id) {
 
         Movie.findById(id, function(err, movie) {
             if (err) {
@@ -142,6 +143,22 @@ app.get('/admin/list', function(req, res) {
             movies: movies
         });
     });
+});
+
+// list delete movie
+app.delete('/admin/list', function(req, res) {
+    var id = req.query.id;
+
+    if (id) {
+
+        Movie.remove({_id: id}, function(err, movie) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.json({success: 1});
+            }
+        });
+    }
 });
 
 app.listen(port);

@@ -32,7 +32,7 @@ MovieSchema.pre('save', function(next) {
 });
 
 MovieSchema.statics = {
-    fecth: function(cb) {
+    fetch: function(cb) {
         return this
             .find({})
             .sort('meta.updateAt')

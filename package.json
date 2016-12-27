@@ -16,5 +16,9 @@
     "morgan": "^1.7.0",
     "pug": "^2.0.0-beta6",
     "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1"
   }
 }
