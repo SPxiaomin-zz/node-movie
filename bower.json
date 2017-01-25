@@ -1,0 +1,21 @@
+{
+  "name": "node-movie",
+  "description": "## 导航",
+  "main": "app.js",
+  "authors": [
+    "gujunmin <3013366498@qq.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/SPxiaomin/node-movie",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3"
+  }
+}
