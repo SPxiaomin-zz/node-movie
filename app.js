@@ -3,6 +3,8 @@ var path = require('path');
 var mongoose = require('mongoose');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var _ = require('underscore');
 
 var Movie = require('./models/movie');
@@ -11,7 +13,8 @@ var User = require('./models/user');
 var app = express();
 
 var port = process.env.PORT || 3000;
-mongoose.connect('mongodb://localhost/imooc');
+var dbUrl = 'mongodb://localhost/imooc';
+mongoose.connect(dbUrl);
 
 app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'pug');
@@ -19,11 +22,20 @@ app.set('view engine', 'pug');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'imooc',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({
+        url: dbUrl
+    })
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 app.locals.moment = require('moment');
 
 // index page
 app.get('/', function(req, res) {
+    console.log('User in session: ', req.session.user);
 
     Movie.fetch(function(err, movies) {
         if (err) {
@@ -60,7 +72,6 @@ app.post('/user/signup', function(req, res) {
             });
         }
     });
-
 });
 
 // signin
@@ -84,13 +95,21 @@ app.post('/user/signin', function(req, res) {
             }
 
             if (isMatch) {
-                console.log('Password is matched');
+                req.session.user = user;
+
                 return res.redirect('/');
             } else {
                 console.log('Password is not matched');
             }
         })
     });
+});
+
+// logout
+app.get('/logout', function(req, res) {
+    delete req.session.user;
+
+    res.redirect('/');
 });
 
 // userlist page
