@@ -13,7 +13,6 @@ exports.showSignin = function(req, res) {
     });
 };
 
-
 exports.signup =  function(req, res) {
     var _user = req.body.user;
 
@@ -90,4 +89,25 @@ exports.list = function(req, res) {
             users: users
         });
     });
+};
+
+// midware for user
+exports.signinRequired = function(req, res, next) {
+    var user = req.session.user;
+
+    if (!user) {
+        return res.redirect('/signin');
+    }
+
+    next();
+};
+
+exports.adminRequired = function(req, res, next) {
+    var user = req.session.user;
+
+    if (user.role <= 10) {
+        res.redirect('/signin');
+    }
+
+    next();
 };
