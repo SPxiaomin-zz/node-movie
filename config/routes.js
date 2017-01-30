@@ -36,5 +36,5 @@ module.exports = function(app) {
     app.delete('/admin/movie/list', User.signinRequired, User.adminRequired, Movie.del);
 
     // Comment
-    app.post('/admin/comment', User.signinRequired, Comment.save);
+    app.post('/user/comment', User.signinRequired, Comment.save);
 };
