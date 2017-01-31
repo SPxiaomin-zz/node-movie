@@ -2,15 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
-var CommentSchema = new Schema({
-    movie: {type: ObjectId, ref: 'Movie'},
-    from: {type: ObjectId, ref: 'User'},
-    reply: [{
-        from: {type: ObjectId, ref: 'User'},
-        to: {type: ObjectId, ref: 'User'},
-        content: String
-    }],
-    content: String,
+var CategorySchema = new Schema({
+    name: String,
+    movies: [{type: ObjectId, ref: 'Movie'}],
     meta: {
         createAt: {
             type: Date,
@@ -23,17 +17,17 @@ var CommentSchema = new Schema({
     }
 });
 
-CommentSchema.pre('save', function(next) {
+CategorySchema.pre('save', function(next) {
     if (this.isNew) {
         this.meta.createAt = this.meta.updateAt = Date.now();
     } else {
-        this.meta.updateAt = Date.now();
+        this.meta.updateAt =  Date.now();
     }
 
     next();
 });
 
-CommentSchema.statics = {
+CategorySchema.statics = {
     fetch: function(cb) {
         return this
             .find({})
@@ -42,9 +36,9 @@ CommentSchema.statics = {
     },
     findById: function(id, cb) {
         return this
-            .findOne({_id: id})
+            .find({_id: id})
             .exec(cb);
     }
 };
 
-module.exports = CommentSchema;
+module.exports = CategorySchema;

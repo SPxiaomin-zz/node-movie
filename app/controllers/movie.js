@@ -12,12 +12,13 @@ exports.detail =  function(req, res) {
         Comment
             .find({movie: movie._id})
             .populate('from', 'name')
+            .populate('reply.from reply.to', 'name')
             .exec(function(err, comments) {
+                console.log(comments);
+                
                 if (err) {
                     console.log(err);
                 }
-
-                console.log('comments: ', comments);
 
                 res.render('detail', {
                     title: 'imooc ' + movie.title,

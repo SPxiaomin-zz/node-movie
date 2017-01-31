@@ -17,8 +17,22 @@ exports.save = function(req, res) {
             comment.reply.push(reply);
 
             comment.save(function(err, comment) {
-                // TODO: stop writing code
+                if (err) {
+                    console.log(err);
+                }
+
+                res.redirect('/movie/' + movieId);
             });
+        });
+    } else {
+        var comment = new Comment(_comment);
+
+        comment.save(function(err, comment) {
+            if (err) {
+                console.log(err);
+            }
+
+            res.redirect('/movie/' + movieId);
         });
     }
 
@@ -26,13 +40,4 @@ exports.save = function(req, res) {
 
 
 
-    var comment = new Comment(_comment);
-
-    comment.save(function(err, comment) {
-        if (err) {
-            console.log(err);
-        }
-
-        res.redirect('/movie/' + movieId);
-    });
 };
