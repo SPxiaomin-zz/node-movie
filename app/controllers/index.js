@@ -17,3 +17,17 @@ exports.index = function(req, res) {
             });
         });
 };
+
+// search page
+exports.search = function(req, res) {
+    var catId = req.query.cat;
+    var page = req.query.p;
+    var index = page * 2;
+
+    Category
+        .find({id: catId})
+        .populate({
+            path: 'movies',
+            select: 'title poster',
+        })
+};
