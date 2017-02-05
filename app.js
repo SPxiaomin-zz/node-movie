@@ -5,6 +5,7 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var multipart = require('connect-multiparty');
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use(session({
     })
 }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(multipart());
 app.locals.moment = require('moment');
 
 require('./config/routes')(app); // TODO: 将此处换成app.Router();

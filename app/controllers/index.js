@@ -22,9 +22,7 @@ exports.index = function(req, res) {
 exports.search = function(req, res) {
     var catId = req.query.cat;
     var q = req.query.q;
-    console.log('req.query.p: ', req.query.p);
     var page = parseInt(req.query.p, 10) || 0;
-    // TODO: 查看page的值，在搜索的时候是多少？
     var count = 2;
     var index = page * count;
 
@@ -55,7 +53,7 @@ exports.search = function(req, res) {
             });
     } else {
         Movie
-            .find({name: q})
+            .find({title: new RegExp(q, 'i')})
             .exec(function(err, movies) {
                 if (err) {
                     console.log(err);
