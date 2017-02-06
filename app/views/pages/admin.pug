@@ -15,8 +15,7 @@ block content
                     .col-sm-10
                         input#inputCategory.form-control(type='text' name='movie[categoryName]' value=movie.categoryName)
                 .form-group
-                    label.col-sm-2.control-label 分类选择
-                    .col-sm-10
+                    .col-sm-offset-2.col-sm-10
                         each cat in categories
                             label.radio-inline
                                 if movie._id

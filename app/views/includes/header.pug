@@ -1,29 +1,3 @@
-.container
-    .row
-        .page-header.clearfix
-            h1= title
-            .col-xs-4.col-md-4
-                small 重度科幻迷
-            .col-xs-8.col-md-offset-4.col-md-4
-                form(method='get' action='/results')
-                    .input-group.pull-right
-                        input.form-control(type='text' name='q')
-                        span.input-group-btn
-                            button.btn.btn-default(type='submit') 搜索
-.navbar.navbar-default.navbar-fixed-bottom
-    .container
-        .navbar-header
-            a.navbar-brand(href='/') 重度科幻迷
-        if user
-            p.navbar-text.navbar-right
-                span 欢迎您，#{user.name}
-                span &nbsp;|&nbsp;
-                a.navbar-link(href='/logout') 登出
-        else
-            p.navbar-text.navbar-right
-                a.navbar-link(href='#' data-toggle='modal' data-target='#signupModal') 注册
-                span &nbsp;|&nbsp;
-                a.navbar-link(href='#' data-toggle='modal' data-target='#signinModal') 登录
 #signupModal.modal.fade
     .modal-dialog
         .modal-content
@@ -54,3 +28,31 @@
                 .modal-footer
                     button.btn.btn-default(type='button' data-dismiss='modal') 关闭
                     button.btn.btn-success(type='submit') 提交
+
+.container
+    .row
+        .page-header.clearfix
+            h1= title
+            .col-xs-4.col-md-4
+                small 重度科幻迷
+            .col-xs-8.col-md-offset-4.col-md-4
+                form(method='get' action='/results')
+                    label.sr-only(for='query') 搜索
+                    .input-group
+                        input.form-control(id='query' type='text' name='q')
+                        span.input-group-btn
+                            button.btn.btn-default(type='submit') 搜索
+.navbar.navbar-default.navbar-fixed-bottom
+    .container
+        .navbar-header
+            a.navbar-brand(href='/') 重度科幻迷
+        if user
+            p.navbar-text.navbar-right
+                span 欢迎您，#{user.name}
+                span &nbsp;|&nbsp;
+                a.navbar-link(href='/logout') 登出
+        else
+            p.navbar-text.navbar-right
+                a.navbar-link(href='#' data-toggle='modal' data-target='#signupModal') 注册
+                span &nbsp;|&nbsp;
+                a.navbar-link(href='#' data-toggle='modal' data-target='#signinModal') 登录
