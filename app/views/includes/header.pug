@@ -2,7 +2,10 @@
     .modal-dialog
         .modal-content
             form(method='post' action='/user/signup')
-                .modal-header 注册
+                .modal-header
+                    button.close(type='button' data-dismiss='modal')
+                        span &times;
+                    h4.modal-title 注册
                 .modal-body
                     .form-group
                         label(for='signupName') 用户名
@@ -17,7 +20,10 @@
     .modal-dialog
         .modal-content
             form(method='post' action='/user/signin')
-                .modal-header 登录
+                .modal-header
+                    button.close(type='button' data-dismiss='modal')
+                        span &times;
+                    h4.modal-title 登录
                 .modal-body
                     .form-group
                         label(for='signinName') 用户名
