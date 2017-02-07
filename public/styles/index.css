@@ -1,3 +1,7 @@
 body {
     padding-bottom: 70px;
 }
+
+.page-header form {
+    margin-top: 25px;
+}

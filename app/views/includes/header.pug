@@ -38,14 +38,14 @@
 .container
     .row
         .page-header.clearfix
-            h1= title
-            .col-xs-4.col-md-4
-                small 重度科幻迷
-            .col-xs-8.col-md-offset-4.col-md-4
+            .col-xs-5.col-md-5
+                h1!= title + '&nbsp;'
+                    small 重度科幻迷
+            .col-xs-7.col-md-offset-4.col-md-3
                 form(method='get' action='/results')
                     label.sr-only(for='query') 搜索
                     .input-group
-                        input.form-control(id='query' type='text' name='q')
+                        input.form-control#query(type='text' name='q')
                         span.input-group-btn
                             button.btn.btn-default(type='submit') 搜索
 .navbar.navbar-default.navbar-fixed-bottom
