@@ -1,4 +1,4 @@
-extends ../layout
+extends ../layout.pug
 
 block content
     .container
@@ -6,7 +6,7 @@ block content
             each cat in categories
                 .panel.panel-default
                     .panel-heading
-                        h3
+                        h2.panel-title
                             a(href=`/results?cat=${cat._id}&p=0`) #{cat.name}
                     .panel-body
                         if cat.movies && cat.movies.length > 0
@@ -14,11 +14,11 @@ block content
                                 .col-md-2
                                     .thumbnail
                                         a(href=`/movie/${item._id}`)
-                                        if item.poster.indexOf('https:') > -1
-                                            img(src=item.poster alt=item.title)
-                                        else
-                                            img(src=`/upload/${item.poster}` alt=item.title)
+                                            if item.poster.indexOf('https:') > -1
+                                                img(src=item.poster alt=item.title)
+                                            else
+                                                img(src=`/upload/${item.poster}` alt=item.title)
                                         .caption
                                             h3= item.title
-                                            p: a.btn.btn-primary(href=`/movie/${item._id}` role='button')
-                                                | 观看预告片
+                                            p
+                                                a.btn.btn-primary(href=`/movie/${item._id}` role='button') 观看预告片
