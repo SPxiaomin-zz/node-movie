@@ -169,6 +169,8 @@ exports.list = function(req, res) {
             console.log(err);
         }
 
+        console.log(movies);
+
         res.render('list', {
             title: 'imooc 列表页',
             movies: movies
