@@ -36,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(multipart());
 app.locals.moment = require('moment');
 
-require('./config/routes')(app); // TODO: 将此处换成app.Router();
+require('./config/routes')(app);
 
 app.listen(port);
 
