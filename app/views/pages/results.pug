@@ -5,7 +5,7 @@ block content
         .row
             .panel.panel-default
                 .panel-heading
-                    h3 #{keyword}
+                    h3.panel-title #{keyword}
                 .panel-body
                     if movies && movies.length > 0
                         each item in movies
@@ -15,7 +15,7 @@ block content
                                         img(src=item.poster, alt=item.title)
                                     .caption
                                         h3 #{item.title}
-                                        p: a.btn.btn-primary(href=`/movie/${item._id}` role='button')
+                                        p: a.btn.btn-primary(href=`/movie/${item._id}`)
                                             | 观看预告片
             ul.pagination
                 - for (var i=0; i<totalPage; i++)
